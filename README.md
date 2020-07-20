@@ -2,7 +2,7 @@
 Installation and Usage of Elasticsearch with mongoengine and django
 
 
-###############Elasticsearch Installation Commands #################
+############### Elasticsearch Installation Commands #################
 
 sudo apt install default-jre
 
@@ -50,7 +50,7 @@ sudo apt install curl  # curl not install
 curl -X GET "http://localhost:9200/?pretty"
 
 
-#########################Create Elasticsearch Indices/Index for mongodb ###########################
+######################### Create Elasticsearch Indices/Index for mongodb ###########################
 
 from elasticsearch import Elasticsearch
 
@@ -59,6 +59,7 @@ es = Elasticsearch(timeout=30, max_retries=10, retry_on_timeout=True)
 ex_list = []
 
 for ex in Example.objects.filter():
+
     b = {}
     b["id"] = ex.id
     b["name"] = ex.name
@@ -68,7 +69,7 @@ es.indices.create(index='example_list', ignore=400)  # Create the index
 
 es.index(index="example_list", id=2, doc_type="example_list", body={"data": ex_list}) # populate the data to index
 
-# es.indices.delete(index='example_list', ignore=400) # remove existing index
+#es.indices.delete(index='example_list', ignore=400) # remove existing index
 
 
 #########################Usage Indices/Index for mongodb ###########################
